@@ -9,7 +9,7 @@ class MaritalStatus(Enum):
     UNMARRIED = 'UNMARRIED'
     WIDOW_MALE = 'WIDOW_MALE'
     WIDOW_FEMALE = 'WIDOW_FEMALE'
-    Blank = 'BLANK'
+    BLANK = 'BLANK'
 
 
 class Engaged(Enum):
