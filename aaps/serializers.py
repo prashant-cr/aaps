@@ -2,24 +2,27 @@ from rest_framework import serializers
 from django.db import transaction
 from aaps.models import Family
 from enumfields.drf.fields import EnumField as EnumSerializerFiled
-from .models import MaritalStatus, FamilyMember, Family
+from .models import MaritalStatus, FamilyMember, Family, Villages
 
 
 class FamilyMembersSerializer(serializers.ModelSerializer):
     marital_status = EnumSerializerFiled(MaritalStatus)
+    village_name = EnumSerializerFiled(Villages)
 
     class Meta:
         model = FamilyMember
         fields = ['id', 'village_name', 'family', 'full_name_english', 'full_name_gujarati', 'is_main_member', 'age', 'relation_main_member',
                   'marital_status', 'education', 'business_Occupation', 'father_name_village', 'address', 'mobile_numbers',
-                   'created_at', 'updated_at']
+                   'created_at', 'updated_at', 'is_engaged']
 
 
 class FamilySerializer(serializers.ModelSerializer):
     # family_members = serializers.ListSerializer(
     #     child=serializers.PrimaryKeyRelatedField(queryset=FamilyMember.objects.all()), read_only=True)
 
-    family_members = serializers.SerializerMethodField('_get_children')
+    # family_members = serializers.ListField(child=FamilyMembersSerializer(Family.family_members_set, many=True), read_only=True, allow_null=True)
+    family_members = serializers.SerializerMethodField('_get_children', allow_null=True)
+    village_name = EnumSerializerFiled(Villages)
 
     def _get_children(self, obj):
         serializer = FamilyMembersSerializer(obj.family_members_set.all(), many=True)
