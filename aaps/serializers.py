@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.db import transaction
 from aaps.models import Family
 from enumfields.drf.fields import EnumField as EnumSerializerFiled
-from .models import MaritalStatus, FamilyMember, Family, Villages
+from .models import MaritalStatus, FamilyMember, Family, Villages, Engaged
 
 
 class FamilyMembersSerializer(serializers.ModelSerializer):
@@ -13,6 +13,7 @@ class FamilyMembersSerializer(serializers.ModelSerializer):
     business_Occupation = serializers.CharField(required=False)
     education = serializers.CharField(required=False)
     father_name_village = serializers.CharField(required=False)
+    is_engaged = EnumSerializerFiled(Engaged)
 
     class Meta:
         model = FamilyMember
