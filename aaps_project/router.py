@@ -4,3 +4,4 @@ from aaps.views import *
 
 router = routers.DefaultRouter()
 router.register(r'family', FamilyViewSet)
+router.register(r'family-members', FamilyMemberViewSet)
