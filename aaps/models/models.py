@@ -9,6 +9,13 @@ class MaritalStatus(Enum):
     UNMARRIED = 'UNMARRIED'
     WIDOW_MALE = 'WIDOW_MALE'
     WIDOW_FEMALE = 'WIDOW_FEMALE'
+    Blank = 'BLANK'
+
+
+class Engaged(Enum):
+    YES = 'YES'
+    NO = 'NO'
+    BLANK = 'BLANK'
 
 
 class Villages(Enum):
@@ -89,7 +96,7 @@ class FamilyMember(models.Model):
     is_main_member = models.BooleanField()
     age = models.IntegerField()
     relation_main_member = models.TextField()
-    is_engaged = models.BooleanField()
+    is_engaged = EnumField(Engaged)
     marital_status = EnumField(MaritalStatus)
     education = models.TextField()
     business_Occupation = models.TextField()

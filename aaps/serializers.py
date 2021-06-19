@@ -6,14 +6,19 @@ from .models import MaritalStatus, FamilyMember, Family, Villages
 
 
 class FamilyMembersSerializer(serializers.ModelSerializer):
-    marital_status = EnumSerializerFiled(MaritalStatus)
+    marital_status = EnumSerializerFiled(MaritalStatus, required=False)
     village_name = EnumSerializerFiled(Villages)
+    mobile_numbers = serializers.CharField(required=False)
+    address = serializers.CharField(required=False)
+    business_Occupation = serializers.CharField(required=False)
+    education = serializers.CharField(required=False)
+    father_name_village = serializers.CharField(required=False)
 
     class Meta:
         model = FamilyMember
         fields = ['id', 'village_name', 'family', 'full_name_english', 'full_name_gujarati', 'is_main_member', 'age', 'relation_main_member',
-                  'marital_status', 'education', 'business_Occupation', 'father_name_village', 'address', 'mobile_numbers',
-                   'created_at', 'updated_at', 'is_engaged']
+                  'marital_status', 'is_engaged', 'education', 'business_Occupation', 'father_name_village', 'address', 'mobile_numbers',
+                   'created_at', 'updated_at']
 
 
 class FamilySerializer(serializers.ModelSerializer):
