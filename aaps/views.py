@@ -12,7 +12,7 @@ class FamilyViewSet(viewsets.ModelViewSet):
 
     queryset = Family.objects.all().order_by('id')
     serializer_class = FamilySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class FamilyMemberViewSet(viewsets.ModelViewSet):
@@ -20,4 +20,4 @@ class FamilyMemberViewSet(viewsets.ModelViewSet):
     queryset = FamilyMember.objects.all().order_by('id')
     serializer_class = FamilyMembersSerializer
 
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
